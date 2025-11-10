@@ -1,5 +1,5 @@
 import { isPlainObject } from '../shared/lib/is-plain-object'
-import safeStringify from 'next/dist/compiled/safe-stable-stringify'
+import safeStringify from '../shared/lib/safe-stable-stringify'
 
 // We allow some additional attached properties for Next.js errors
 export interface NextError extends Error {

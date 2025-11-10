@@ -1,4 +1,12 @@
-import type { Token } from 'next/dist/compiled/path-to-regexp'
+// Local minimal Token type compatible with path-to-regexp's token structure
+export type Token =
+  | string
+  | {
+      modifier?: string
+      prefix?: string
+      suffix?: string
+      [key: string]: unknown
+    }
 
 /**
  * Route pattern normalization utilities for path-to-regexp compatibility.
