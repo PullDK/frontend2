@@ -258,6 +258,17 @@
     display: none !important;
   }
 }
+
+/* Responsividade: evitar overflow horizontal em telas pequenas */
+html, body, #__next {
+  overflow-x: hidden;
+}
+/* Melhorar comportamento de scroll no mobile */
+body {
+  overscroll-behavior-y: none;
+  overscroll-behavior-x: none;
+  touch-action: pan-y;
+}
 @layer utilities {
   .absolute {
     position: absolute;

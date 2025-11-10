@@ -1273,10 +1273,18 @@ export default function ChatPage() {
       @keyframes twinkle { 0%, 100% { opacity: 1; filter: drop-shadow(0 0 0 rgba(255,255,255,0)); } 50% { opacity: 0.85; filter: drop-shadow(0 0 6px rgba(255,255,255,0.6)); } }
       .animate-twinkle { animation: twinkle 2s ease-in-out infinite; display: inline-block; }
       `}</style>
-      <header className="border-b p-3">
+      <header className="border-b p-3 flex items-center gap-3">
+        <button
+          onClick={() => router.push("/chat")}
+          aria-label="Voltar para conversas"
+          className="md:hidden rounded p-2 hover:bg-white/5"
+          title="Voltar"
+        >
+          ←
+        </button>
         {chatType === "group" ? (
           <button
-            className="flex items-center gap-3 cursor-pointer"
+            className="flex items-center gap-3 cursor-pointer min-w-0"
             onClick={() => setGroupSettingsOpen(true)}
             title="Abrir configurações do grupo"
           >
@@ -1287,13 +1295,13 @@ export default function ChatPage() {
                 {(chatTitle || "G").slice(0, 1).toUpperCase()}
               </div>
             )}
-            <h1 className="font-medium">{chatTitle}</h1>
+            <h1 className="font-medium min-w-0 flex-1 truncate">{chatTitle}</h1>
           </button>
         ) : (
-          <h1 className="font-medium">{chatTitle}</h1>
+          <h1 className="font-medium min-w-0 flex-1 truncate">{chatTitle}</h1>
         )}
       </header>
-     <main ref={messagesContainerRef} className="flex-1 p-4 space-y-4 overflow-y-auto">
+     <main ref={messagesContainerRef} className="flex-1 p-4 space-y-4 overflow-y-auto overflow-x-hidden">
         {error && (
           <div className="rounded border border-red-300 bg-red-50 p-3 text-sm text-red-700">
             {error}

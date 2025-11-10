@@ -565,9 +565,12 @@ export default function ChatLayout({ children }: { children: React.ReactNode }) 
   }
 
   return (
-    <div className="min-h-screen grid grid-cols-[360px_1fr] bg-background">
+    <div
+      className="min-h-[100dvh] w-full max-w-full grid grid-cols-1 md:grid-cols-[360px_1fr] bg-background overflow-x-hidden"
+      style={{ touchAction: "pan-y" }}
+    >
       {/* Sidebar */}
-      <aside className="border-r border-border bg-surface flex flex-col">
+      <aside className={`${activeChatId ? "hidden md:flex" : "flex"} border-r border-border bg-surface flex-col h-[100dvh] overflow-y-auto`}>
         <div className="p-4 border-b border-border">
           <div className="flex items-center justify-between">
             <div className="font-semibold">DKChat</div>
@@ -684,18 +687,18 @@ export default function ChatLayout({ children }: { children: React.ReactNode }) 
 
         <div className="border-t border-border p-3 flex flex-col gap-2">
           <button onClick={() => { setNewOpen(true); setEmailInput(""); setTarget(null); setCreateError(null); }}
-            className="text-sm text-white bg-primary hover:bg-primary/90 rounded px-3 py-2">
+            className="text-xs text-white bg-primary hover:bg-primary/90 rounded px-2 py-1">
             Nova conversa
           </button>
           <button onClick={() => { setGroupOpen(true); setGroupName(""); setGroupDescription(""); setGroupPhotoURL(""); setSelectedMemberUids([]); setGroupError(null); }}
-            className="text-sm text-white bg-primary hover:bg-primary/90 rounded px-3 py-2">
+            className="text-xs text-white bg-primary hover:bg-primary/90 rounded px-2 py-1">
             Criar grupo
           </button>
         </div>
       </aside>
 
       {/* Chat area */}
-      <section className="flex flex-col h-screen bg-background">{children}</section>
+      <section className={`${activeChatId ? "flex" : "hidden"} md:flex flex-col h-[100dvh] bg-background overflow-x-hidden`}>{children}</section>
 
       {/* Modal: Nova conversa */}
       {newOpen && (
